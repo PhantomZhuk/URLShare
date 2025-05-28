@@ -1,0 +1,40 @@
+@layer base, utils, media;
+@layer base {
+  :root {
+    --aside-translate: 40% -60%;
+    --main-bg: #39c674;
+    --aside-bg: linear-gradient(
+      to right top,
+      var(--main-bg),
+      rgba(255, 255, 255, 0.931) 70%
+    );
+    --txt-scale: 1;
+    --font-xl: calc(var(--txt-scale) * 30px);
+    --font-s: calc(var(--txt-scale) * 15px);
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  a {
+    text-decoration: none;
+  }
+  #app {
+    background-color: var(--main-bg);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  body {
+    overflow: hidden;
+    height: 100vh;
+  }
+  header {
+    width: 90%;
+    align-items: center;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+  }
+}
