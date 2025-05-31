@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { IsDate, IsNotEmpty, IsString, IsUrl } from 'class-validator';
 
 export class GetUrlDto {
   @ApiProperty({ example: 1, description: 'Id' })
@@ -13,4 +13,8 @@ export class GetUrlDto {
   @ApiProperty({ example: '314202520151', description: 'Code' })
   @IsString()
   code: string;
+
+  @ApiProperty({ example: '314202520151', description: 'Created date' })
+  @IsDate()
+  createdAt: Date;
 }

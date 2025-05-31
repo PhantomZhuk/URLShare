@@ -3,6 +3,7 @@ import { CreateCodeDto } from './dto/create-url.dto';
 import { DRIZZLE } from './drizzle/drizzle.module';
 import { DrizzleDB } from './drizzle/types/drizzle';
 import { url } from './drizzle/schema/url.schema';
+import { lt } from 'drizzle-orm';
 
 @Injectable()
 export class AppService {
@@ -43,5 +44,11 @@ export class AppService {
     }
 
     return dbUrl;
+  }
+
+  async deleteOldUrls() {
+    return await this.db
+      .delete(url)
+      .where(lt(url.createdAt, new Date(Date.now() - 2 * 60 * 60 * 1000)));
   }
 }
