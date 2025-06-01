@@ -1,0 +1,1 @@
+ALTER TABLE "url" ADD COLUMN "createdAt" timestamp with time zone DEFAULT now() NOT NULL;

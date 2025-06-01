@@ -4,6 +4,7 @@ import { CreateCodeDto } from './dto/create-url.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetCodeDto } from './dto/get-code.dto';
 import { GetUrlDto } from './dto/get-url.dto';
+import { Cron } from '@nestjs/schedule';
 
 @Controller()
 export class AppController {
@@ -21,5 +22,12 @@ export class AppController {
   @Post('getUrl')
   async getUrlByCode(@Body() body: GetCodeDto) {
     return this.appService.getUrlByCode(body.code);
+  }
+
+  @Cron('0 * * * *')
+  async deleteOldUrls() {
+    const result = await this.appService.deleteOldUrls();
+
+    console.log(`[CleanupService] Deleted URLs older than 2h:`, result);
   }
 }
